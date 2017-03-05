@@ -1,0 +1,71 @@
+一.ado.net基本概念?
+1.ado.net的重要性
+    
+2.ado.net 是什么?
+ADO.NET微软.NET框架的组件,是在基本.NET平台的应用程序中用于访问数据源的技术
+在.NET框架中,ADO.NET类库位于System.Date命名空间中,这些类库包括连接数据源/执行命令获取数据等功能
+ADO(ActiveX Date Objects):微软早期的数据访问技术
+
+
+3.ado.net 的特点和优点?
+    标准化,高性能:ADO.NET都是以XML格式传送数据的
+    互操作,可编程性:在任何.NET平台开发的应用程序中都可以用
+    可伸缩,支持非断开式连接同时增强了断开式连接
+
+ 非断开式连接:在数据访问期间,一直占用网络连接即一直与数据源保持连接
+ 断开式连接:在数据访问期间,不一直占用网络连接,仅在需要的时候连接数据源
+
+断开式连接必要性
+   1.应用程序的性能取决于用户数量,大部分数据 最佳性能 并发连接数是有限的
+   2.对于WEB应用程序,维护与数据库的持续[非断开式]连接不可行
+
+
+
+
+非断开式与断开式的适用情况
+非断开式----insert,update ,delete(用得多)
+断开式-----select(查询多条数据)
+
+
+4.ado.net的结构
+由两部分组成
+1..net数据提供程序------system.data.sqlclient命名空间下
+  1)connection----数据库连接
+  2)command-------数据库操作
+  3)datareader----数据读取器
+  4)dataadapter---数据适配器
+     4.1)selectcommand
+     4.2)insertcommand
+     4.3)updatecommand
+     4.4)deletecommand
+2.dataset--------System.data命名空间下
+  1)datatable
+     1)datacolumn
+     2)datarow
+  2)dataview
+  3)datarelation
+
+dataset
+    是存储数据的对象,不直接与数据库交互,既可存储数据库的数据,也可以存储非数据库的数据,是0个多个表对象的集合,这些表对象由数据行和列,约束和有关表中数据关系的信息组成,可以看成是一个小型的数据库容器
+
+5.ado.net 的工作原理,ado.net操作数据库的步骤
+非断开式连接
+  1.声明sqlconnection对象,然后调用open方法
+  2.声明sqlcommand对象
+      1)ExeuteNonQuery():返回受影响行数(返回为int类型)
+      2)ExeuteReader():返回DataReader对象
+      3)ExeuteScalar():返回首行首列(为ojbect对象),一般是聚合函数
+  3.关闭连接.
+断开式连接
+  1.声明sqlconnection对象(可以显示Open打开,也可以不打开)
+  2.声明DataAdapter对象
+     1)设置selectcommand属性,调用fill()方法填充数据集
+     2)设置insertcommand属性,调用update()方法更新数据
+     3)设置updatecommand属性,调用update()方法更新数据
+     4)设置deletecommand属性,调用update()方法更新数据
+     说明:当调用fill(),update()方法时,连接会自动打开,
+          当方法执行完成后,连接会自动关闭
+  3.可以显示关闭,也可以不显示关闭
+ 
+连接字符串
+

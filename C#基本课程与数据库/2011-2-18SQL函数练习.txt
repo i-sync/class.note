@@ -1,0 +1,122 @@
+--2011-2-18练习
+--1.关系运算符
+/*
+use Northwind
+select * from employees
+--where reportsto>2 --判断reportsto 大于2的所有数据
+--where employeeid=2  判断employeeid等于2的数据
+--where employeeid <=5  --判断employeeid小于等于5的所有数据
+--where employeeid !=5  --判断employeeid所有不等于5的数据
+*/
+
+/*
+--2.逻辑运算符
+select * from products
+--where supplierid=5 and categoryid=4 --判断supplierid=5而且categoryid=4的所有信息
+--where supplierid= 5 or categoryid=4  --判断supplierid=5 或者categoryid=4的所有信息
+*/
+
+/*
+--3.通配符
+select * from products 
+--where productname like 'q%'  --选择productname以q开关的所有数据
+--where productname like 'tof_' --选择productname 以tof开头并且只有四位
+--where productname like 'cha[inr]%' --选择productname 以cha开头并且第四位是inr之中的一个
+--where productname like 'c[^h]%'  --选择productname以c 开头，并且第二位不是h的所有数据
+*/
+
+/*
+--数学函数
+--1.abs取数值表达式的绝对值
+declare @num1 int 
+declare @num2 int
+select @num1=5,@num2=65
+select abs(@num1-@num2)
+--2.ceiling返回大于或等于所给数字表达式的最小整数
+--3.floor返回小于等于所给数字表达式的最大整数
+declare @num1 numeric(4,2)
+declare @num2 numeric(4,2)
+set @num1=45.36
+set @num2=99.99
+select @num2-@num1
+select ceiling(@num2-@num1)
+select floor(@num2-@num1)
+--4.power 取数值表达式的幂值
+--declare @i int
+--set @i=0
+--for( @i ; @i<10 ; @i++)
+--begin
+--select power(@i,2)
+--end
+select power(5,2)
+--5.round将数值表达式四舍五入为指定精度
+select round(45.2356,1)
+select round(89.1257,2)
+--6.sign对于正数返回+1，对于负数返回-1，对于0返回0
+select sign(-78)
+select sign(54)
+select sign(0)
+select sign(-1)
+select sign(1)
+--7.sqrt取浮点表达式的平方根
+select sqrt(10)
+select sqrt(400)
+select sqrt(225)
+*/
+
+/*
+--日期类型函数
+--1.GetDate() 获取当前的系统日期
+select getdate()
+--2.dateadd()将指定的数值添加到指定的日期部分后的日期
+select dateadd(dd,50,getdate())  --当前日期天数加50
+select dateadd (mm,5,getdate())  --当前日期月分加5
+select dateadd(yy,10,getDate())  --当前日期年份加10
+--3.datediff两个日期之间的指定日期部分的区别
+select getdate()
+SELECT DATEDIFF(second ,'2011-2-19 2:46:00',getdate()); --获取当前时间与指定时间之间间隔的秒数
+select datediff(day ,'2011-1-19 0:0:0',getdate())  --获取当前时间与指定时间的相隔多少天
+--4.datename 返回指定日期的字符串
+select datename(weekday,getdate())  --返回今天是星期几
+select datename(year,getdate())    --返回今年是哪一年
+--5.datepart返回指定日期部分的整数形式
+select datepart(hour,getdate())  --返回当前时间的小时数
+*/
+
+
+/*
+--字符串函数
+--1.charindex用来寻找一个指定的字符串在另一个字符串中的起始位置
+select charindex('abc','zcvoiabcirkejr',-1) --返回abc在第二个字符串的起始位置为6
+select charindex('123','552156352') --没有查找123
+--2.len返回传递给它的字符串长度
+select len('abcdefg')  --返回字符串中的字符数为7
+--3.lower把传递给它的字符串转换为小写
+--4.upper把传递给它的字符串转换为大写
+select lower('odfjOSAJFsalfjaLDF')
+select upper('ASOJFDLsofijafaoLSJF')
+--5.ltrim清除字符左边的空格
+--6.rtrim清除字符右边的空格
+select ltrim('       abc       ') --返回值为'abc       '
+select rtrim('       abc       ') --返回值为'       abc' 
+--7.right从字符串右边返回指定数目的字符
+select right('abcdefg',5) --返回cdefg
+--8.replace替换一个字符串的字符
+select replace('aaaaa','a','c')--第一个参数是要搜索的字符串，
+							   --第二个参数是要查找的字符串，
+							   --第三个参数是要替换的字符串
+
+*/
+
+
+/*
+--转换函数
+--1.cast(expression as datatype)
+select cast('123' as int)  --把字符串‘123’,转换成数据类型的123
+select cast (123 as char)  --把数字123转换成字符串‘123’
+--2.convert(datatype,expression)
+select convert(int ,'123') --把字符串‘123’,转换成数据类型的123
+select convert (char ,123) --把数字123转换成字符串‘123’
+*/							   
+							   
+							   

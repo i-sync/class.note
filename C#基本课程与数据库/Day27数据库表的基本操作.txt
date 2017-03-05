@@ -1,0 +1,80 @@
+数据库表的基本操作——插入、更改、删除、基本查询
+
+//插入单行数据
+语法：intset into 表名 （列名，。。。） valuse (值，。。。)
+第一种：插入全部列：
+	1）insert into 表名 valuse （值，。。。）
+	说明：值的顺序必须与表的列顺序完全一致
+	2）insert into 表名（列名，。。。） valuse (值，。。）
+	说明：值的顺序和前面列名对应
+第二种：插入部分列：
+	1）insert into 表名(列名，。。。) valuse (值，。。。)
+	说明：未列出的必须是允许为null或者有默认值
+
+
+//插入多行数据
+1.将现有表中数据插入到现有表中	
+语法:  insert into <表名B> [列名]
+         select <列名> from <源表名A> union
+	 select <列名> from <源表名A1> ...
+
+2.将现有表中数据插入到新建表中
+语法: select <列名> into <新建表名> form <源表名A>
+3.将数据一次性插入多条
+语法: insert into 表名 (列名,...)
+	select 值,... union
+	select 值,... union...
+
+更新数据行
+语法:update <表名> set <列名=更新值>[,...] [where <更新条件>]
+     说明:一般情况下,都加where条件,不加条件则所有行都被更新
+
+删除数据
+语法:delete from 表名 where 条件
+   说明:1)一般的删除都加where ,如果不加则删除所有数据
+        2)要符合引用完整性(不能造成从表数据孤立)
+truncate table 表名----相当于没有where 条件的delete 表名
+说明:1)优点:删除所有数据时,使用truncate语句要比Delete语句效率高
+            truncate table 可以重置自增长列
+     2)缺点：不能够条件控制，只能删除所有数据
+	　　　不能删除有外键引用的表（先删除表，再重构表）
+
+
+			查询
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+order by  对查询结果集进行排序
+语法:select 列名 from 表名 order by 列名 [ASC|DESC]
+    说明:order by 后的列名并不一定要显示出来,
+	 只要表中存在就行
+     两种排序,默认为升序(asc),降序(desc)
+    1)数据库并不主动为结果集进行排序
+    2)order by 子句中指定的列不一定要出现在选择列表中
+    3)order by 子句中可以引用某字段在选择列表中的位置而进行排序
+	eg:select stu_id,stu_name,... from student order by 1   意思是按stu_id 进行升序排序
+    4)order by 不能对text,ntext ,image 进行排序
+    5)可以按多列进行排序,中间用逗号分开
+	先按照第一列进行排序,然后依次类推
+
+
+distinct---去掉重复行
+    语法:select distinct 列名 from 表名
+	如上语句:去掉重复行
+    说明:默认为all: 返回所有数据,包括重复的数据
+         它可对一列或多列的组合进行重复删除数据,使数据唯一
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

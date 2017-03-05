@@ -1,0 +1,19 @@
+通用方法
+1.ExecuteCommand() ----insert,update ,delete
+2.SelectFirstRowFirstCells
+3.GetDataReader
+4.GetDataSet
+
+常规操作
+方法命名建议
+1.Add+表名:AddRoom(Room room)-------------insert
+2.Modify+表名(主键为自增长列,):ModifyRoom(Room room)---update
+  Modify+表名+By+主键名(主键为非自增长)ModifyRoomById(Room room,int id)
+3.Delete+表名+by+主键名:DeleteRoomById(int id)--delete
+4.Get+表名+BY+主键名:GetRoomById(int id )--------selectsingle
+  GetAll+表名s:GetAllRooms--------------selectall
+
+注意:
+  1.从表获取单个对象时
+     1.1)若使用DataReader对象,则先将外键值取出存起来
+     然后,关闭DataReader对象,再去执行

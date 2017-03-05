@@ -1,0 +1,84 @@
+SQL (Structure Query Language)结构化查询语言
+   是数据库可以识别的通用指令集
+   Linq-----SQL／Object／XML都能识别的语言
+  T-SQL（Transact -SQL）事务SQL
+    是微软对SQL的加强版，增加一些功能：变量的声明、操作，流程控制，
+
+分类：1.DML（Data manage language数据操作语句）
+      select ,insert ,update ,delete等
+      2.DDL(data define language 数据定义语句)
+      用来定义数据库对象[库、表、列]
+      eg: create /alter/drop
+      3.DCL (data control language数据控制语句)
+      用来设置或更改权限
+      eg: grant ,revoke 
+      grant 权限 on 表 to 角色
+      4.变量说明、流程控制、功能函数
+         定义变量、判断、分支、循环
+	 一系列函数（日期，数学，字符串，转换）
+
+SQL是一门格式自由的语言，
+SQL语言不区分大小写
+
+数据类型分分类:
+   1.文本,Char,nchar,varchar ,nvarchar ,text ,ntext 
+     char :是不可变长字符串,固定长度,浪费空间,访问速度快
+     varchar:是可变长度字符串,节省空间,访问速度慢
+     eg : char(10):可以存储10个字节,若存不满,也会占10个节,后面用空格来补充
+     varchar(10):可以存储10个字节,若存不满,会自动缩小,可以节省空间
+
+     char与nchar的区别:
+     char(varchar)是非Unicode编码,在1-8000个字节,(以字节为基本单位)
+     nchar(nvarchar)是Unicode编码,在1-4000个字符,(以字符为基本单位)
+        意思是:一个字母也要占一个字符
+     一个英文字母占一个字节,一个汉字占二个字节(一个字符)
+     总结:当长度超过4000,也得用char,一个字母在nchar中也占一个字符,尽量少用nchar.
+     text,ntext 用于存储长文本(大量数据)
+
+用户自定义的(别名数据类型):当多个表必须在一个列中存储相同类型的数据,而您必须确保这些列具有相同的数据类型/长度等特性时,可以使用别名类型.
+
+常量:固定的值
+  注意:Sql语言中,字符类型和日期类型必须加单引号'';
+变量:保存某一数据类型值,是可变的使用@声明
+声明:declare @变量名 数据类型
+赋值: set/select @变量名 = 值
+区别: set每次只能赋一个值.select可以赋多个值
+      set不能操作表,select赋值可以操作
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

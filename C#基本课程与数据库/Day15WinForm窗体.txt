@@ -1,0 +1,34 @@
+控件:窗体上的可视化组件
+     是窗体的一个组成部分
+Cursor:设置鼠标的样式
+
+控件
+Label(lbl):标签
+TextBox(txt):文本框
+    MaxLength:最大长度
+    Multiline:是否多行
+    Passwordchar:密码字符
+    ReadOnly:只读
+    Clear();清空文本
+RadioButton(rdo)
+CheckBox(chk)
+    Checked :是否选中
+    CheckState:当前状态
+ListBox(lst):列表框,可选中一个或多个值
+    Items.Add(object s)添加一项,AddRange(object [] s),Insert (int index, ojbect s)插入一项
+    SelectedIndex:获取选择项索引,无选择项为-1
+    SelectedItem:获取选择项的文本
+
+ComboBox (cmb):下拉列表框,相当于ListBox与TextBox的集合
+	可以选,也可以输入
+	DropDownStyle:设置下拉列表框的样式()
+
+CheckListBox(clb)
+
+var:用于接收未知类型,程序在第一次接收时固定的数据类型
+    var num = 5;   //相当于int num = 5;
+    num = "abc"   //报错,因为上一语句已固定num为整形
+
+panel (pnl) 可以有滚动条
+GroupBox 可以有标题
+TabControl(tc):选项卡

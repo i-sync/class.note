@@ -1,0 +1,124 @@
+where后面常用6种操作
+1.关系运算符
+2.逻辑运算符
+3.
+in:用于多个条件中任选一个条件的情况
+   可以用于替换多个or的情况
+   语法:select * from 表名 where 列名 in (值1,值2,...)
+not in:不在某个范围的内的数据
+   语法:select * from 表名 where 列名 not in(值1,值2,...)
+注意:尽量避免in操作列出现NULL值，有可能不是预期的结果
+4.
+between...and:获取范围之内的值
+              可以用>= and <=替换
+	      语法:select * from 表 where 列名 between 值1 and 值2
+	      查找值1到值2之间的值，包含值1和值2
+not between...and:获取范围之外的值
+5.
+like:常常用通配符配合使用，起到模糊查询的效果
+     只能去匹配字符串和日期类型，也就是后边必须加''
+     语法:select * from 表 where 列名 like ''
+not like:查询不像什么什么的，也是和通配符配合使用
+         语法:select * from 表 where 列名 like ''
+6.
+is null:查找列为NULL值的数据
+        语法:select * from 表 where 列名 is null
+is not null:查找不为NULL的数据
+            语法:select * from 表 where 列名 is not null
+
+性能问题:
+  1.能用精确查找的，就不用模糊查询
+  2.尽量避免用非逻辑操作 not in,not between and,is not null
+  3.like、order by都会降低性能
+
+聚合函数:----------返回单个值
+  1.sum():求和
+  2.avg():求平均值
+  3.max():求最大数
+  4.min():求最小数
+  5.count():求总数量
+    说明:会忽略NULL值，建议写select count(主键列)
+         也可以写count(*)获取总行数，但不建议,推荐count(主键)
+  总结:count,max,min参数列可以是数字类型或者是字符串类型
+       sum,avg参数列只能是数字类型
+       --如下语句出错，因为聚合函数返回单个值，非聚合返回所有值
+       --行不一样
+       select stuId,max(writenexam) as 总成绩
+       from marks
+
+group by:用于分组查询
+   说明:1.一般和聚合函数一起使用
+        2.常见结构(顺序不能变) where 条件... group by 分组列... having 条件...
+	  1)where: 对分组前的数据进行筛选
+	  2)group by:说明按谁分组
+	    说明:对select后面的列有限制,除了聚合函数之外，select后面的列必须在group by中出现，否则错误
+	         group by后面如果出现多列，按照多列的联合，相同才分一组
+	  3)having:对分组后的数据进行筛选，经常以聚合函数做筛选
+	           在分组的时候就被计算出来
+	  可能出现的情况:
+	    select 列 from 表 group by 分组列
+	    select 列 from 表 where 条件 group by 分组列
+            select 列 from 表 group by 分组列 having 条件
+	    select 列 from 表 where 条件 group by 分组列 having 条件
+
+表的别名:给表起个别名，便于脚本的操作
+         一般做多表联接或者是子查询时使用
+	 自联接必须用别名----不用做不出来
+多表联接注意:当多个表中包含同名列时，访问列必须使用表名.列名
+             列名没有同名时，访问可以直接写列名
+多表联接的原因:
+  1.当所取的数据一个表不能完全得到时可以用多表联接
+  2.使用多表联接可以提高结果的可读性，便于直观的分析结果
+多表联接的分类:
+  1.内联接(inner join):使用公共字段将两个表联接起来，默认就是内联接             
+	   执行过程:用一个表的每一个列去匹配另外一张表的每个一列
+           执行结果:返回的是两张表中的公共记录
+  2.外联接
+      1)左外联接:使用公共字段将两个表联接起来
+          执行过程同内联接
+	  执行结果:返回两张表中的公共记录
+	           以及左表中的其余所有记录，不满足联接条件的返回空值
+      2)右外联接:使用公共字段将两个表联接起来
+          执行过程同内联接
+	  执行结果:返回两张表中的公共记录
+	           以及右表中的其余所有记录，不满足联接条件的返回空值
+      3)完整外联接:使用公共字段将两个表联接起来
+          执行过程同内联接
+	  执行结果:返回两表中的公共记录
+	           以及两表中的所有其余记录
+      两表联接，先出现的表为左表，后出现的表为右表
+  交叉联接:返回两个表中所有可能的记录-------不用
+  自联接:是内联接的一种，自己联接自己
+多表联接操作符:
+  join ... on ...:默认为内联接
+  inner join ... on ...:内联接
+  left outer join ... on ...:左外联接
+  right outer join ... on ...:右外联接
+  说明:join后面跟的想要联接的表名
+       on后面的跟的是条件,一般是两个表的公共字段相等操作
+  eg: 内联接
+      select name,writenExam,labExam
+      from students
+      join marks 
+      on students.stuId=marks.stuId
+
+      select name,writenExam,labExam
+      from students s
+      left outer join marks m
+      on s.stuId=m.stuId
+
+      select name,writenExam,labExam
+      from marks m
+      right join students s
+      on s.stuId=m.stuId
+
+      select name,writenExam,labExam
+      from students
+      full join marks 
+      on students.stuId=marks.stuId
+
+
+
+
+
+

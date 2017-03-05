@@ -1,0 +1,22 @@
+为表添加列四种方式
+第一种方式:直接添加,但不方便设置列的属性
+dtStu.Columns.Add("StuID",typeof(int));
+第二种方式:先声明DataColumns,再添加到Columns集合中
+DataColumn dcStuName=new DataColumn();
+dcStuName.ColumnName="StuName";
+dcStuName.DataType = typeof (int);
+dtStu.Columns.Add(dcStuName);
+第三种方式:声明的同时赋值,再添加到Columns集合中
+DataColumn dcStuAddress=new DataColumn("StuAddress",typeof(string));
+dtStu.Coiumns.Add(dcStuAddress);
+第四种方式:向表中添加的同时返回DataColumn对象
+DataColumn dcStuSeat=dtStu.Columns.Add("StuSeat", typeof(int))
+
+
+		Dateview
+------------------------------------------
+1.用作DataTable中存储的数据的表示层
+2.提供对DataTable进行排序,筛选和搜索的自定义视图
+3.允许WInFroms控件进行数据绑定,可用于查看DataTable中存储的数据的子集
+
+

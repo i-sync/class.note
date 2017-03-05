@@ -1,0 +1,75 @@
+函数
+1.系统函数：SQL Server预定义好的
+2.用户自定义：用于满足自身需求
+   优点：模块化开发，减少网络流量，执行速度快
+   语法：create funcation 方法名 (形式参数  数据类型)
+         returns 返回值类型
+       as
+         begin
+	    //方法内容
+	    return ...
+	 end
+   调用：必须用 架构名.函数名（参数）
+
+数学函数：
+   1.ceiling大于或等于参数的最小整数
+   2.floor 小于或等于参数的最大整数
+   3.round四舍五入到指定的精度
+   4.power 返回指定表达式的指定幂的值
+   5.sqrt参数的平方根
+字符串：
+   1.charindex:在expression2中搜索expression1并返回其起始位置。搜索的起始的位置Start_location
+   语法			:charindex(expression1,expression2,start_location)
+   SQL 的字符串所有下标都是从1开始的
+   2。len返回字符串长度，所有字符（字母，汉字）都这按一个字符处理。len不计算右边的空格
+   3.lower转为小写，upper转为大写
+   4.ltrim：清除左边的空格
+     rtrim：清除右边的空格
+   5.replace:将表达式中的一字符串替换为另一个字符串或空字符串
+   语法：replace(character_expression,searchstring ,replacementstring)
+   character_expression:是函数要搜索的有效字符表达式
+   searchstring：是函数尝试定位的有效字符表达式
+   replacementstring:是用作替换表达式的有效字符表达式
+   6.substring返回子字符串
+日期函数：
+   1.getdate():得到当前日期和时间
+   2.dateadd():将指定number时间间隔与指定date的指定datepart相加后，返回该date。
+   3.datediff:返回指定的startdate和enddate之间的所跨的指定datepart边界的计数。
+   3.datepart:返回表示指定date的指定datepart的整数
+转换函数
+   1.convert(date_type,expression)
+   2.cast(expression as date_type)
+   说明：date_type:目标数据类型
+         expression:要转换为的表达式
+
+批处理：客户端向服务端发送数据的单元（执行计划）
+        可以包含一条或多条
+  特点：1.一次性将多条语句发送给服务器，而不是一次一次发，但是服务器执行还是单条语句执行
+        2.减少与服务器的通讯，从而提高效率
+	3.go为批处理标记，碰到go就往服务器提交一次
+	4.有的SQL语句前必须加go,不能与其语句作为一个单元处理
+
+
+数据库基本知识
+
+数据存储结构：
+1 .逻辑存储结构：
+	数据库是由哪些组成：表、视图、存储过程。。。。
+2 .物理存储结构：
+	数据库文件在磁盘上是怎么保存的
+	数据库由数据库文件和日志文件两部分组成
+数据库构成：
+1.数据文件：包含数据（实体）和对象（表，视图，存储过程。。。）
+   主数据文件(.mdf)：数据和对象存在于主数据文件
+   次要数据文件(.ndf)：主数据文件存储不下时，将数据存在次要数据文件中
+2.日志文件：存储数据库的日志操作信息
+
+
+
+
+
+
+
+
+
+

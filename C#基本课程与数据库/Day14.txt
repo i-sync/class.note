@@ -1,0 +1,38 @@
+应用程序:指为了完成某项或某几项特定任务而被开发运行于操作系统之上的计算机程序.
+
+
+应用程序与应用软件的概念不同
+程序为软件的一个组成部分
+   图形用户界面(GUI)+引擎(核心代码)
+软件指程序与其相关文档或其化从属物的集合
+
+
+应用程序两种模式:
+	C/S:Client/Server,独立运行,需要安装(WinForms)
+	B/S:Brower/Server,借助于浏览器运行,不需要安装(Web)
+
+	foreach (Control control in Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox textbox = control as TextBox;
+                    textbox.Text = "";
+                }
+            }    
+
+窗体属性分类;
+	共享属性:可处理同一个类的多个实例
+	实例属性:分配给类的各个实例,每个实例的值不一样
+
+重要方法:
+    show()显示无模式窗体,可以不关闭显示窗口而操作原窗口
+    showDialog()显示有模式窗体,只能关闭或隐藏
+
+    关闭程序	1.Application.Exit();
+		2.this.Close();(当前窗口为主窗体时,关闭整个程序)
+
+Partial关键字,表示部分类
+	运行时,编译器会将同名的Partial文件合并运行
+
+代码后置:将页面显示与业务逻辑分开放置
+    特点:结构清晰,分工明确,可维护性增强

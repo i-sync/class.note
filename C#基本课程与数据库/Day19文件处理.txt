@@ -1,0 +1,13 @@
+		system .IO 
+---------------------------------------
+
+FileStream继承自Stream
+fileStream构造函数
+ FileMode指定是保留还是
+
+ 读写文件步骤:
+     1.创建文件流(FileStream)
+     2.创建相应的读写器(StreamWriter,StreamReader)
+     3.进行读写操作
+     4.关闭相应的读写器(Writer.Close()或Reader.Close())
+     5.关闭文件流(FilesStream.Close())
